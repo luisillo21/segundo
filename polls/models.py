@@ -1,11 +1,11 @@
 from django.db import models
 
-class Pregunta(models.Model):
-    id_pregunta = models.AutoField(primary_key=True)
-    pregunta_texto = models.CharField(blank=False, null=False, max_length=200)
-    fecha_publicacion = models.DateField('fecha_de_publicacion', blank=False, null=False)
+class Question(models.Model):
+    id = models.AutoField(primary_key=True)
+    question_text = models.CharField(blank=False, null=False, max_length=200)
+    pub_date = models.DateField('date published', blank=False, null=False)
 
-class Opcion(models.Model):
-    id_opcion = models.AutoField(primary_key=True)
-    opcion_texto = models.CharField(blank=False, null=False, max_length=200)
-    id_fk_pregunta = models.OneToOneField(Pregunta, on_delete= models.CASCADE)
+class Choice(models.Model):
+    id = models.AutoField(primary_key=True)
+    choice_text = models.CharField(blank=False, null=False, max_length=200)
+    question = models.ForeignKey(Question, on_delete= models.CASCADE)
